@@ -1,40 +1,58 @@
 <?php
-class mn_widget_hello extends WP_Widget {
-	function __construct() {
-		parent::__construct(
-			'mn_widget_hello', // Base ID
-			'Hello World', // Name
-			array( 'description' => "Just another WordPress Widget", ) // Args
-		);
-	}
- 
-	function widget($args, $instance){
-		echo $args['before_widget'];
-		echo $args['before_title'].$instance['title'].$args['after_title'];
-		echo '<div class="widget-content">';
-		echo '... Widget Content Goes Here ...';
-		echo '</div>';
-		echo $args['after_widget'];
-	}
- 
-	function update($new_instance, $old_instance){
-		$instance = array();
-		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-		return $instance;
-	}
- 
-	function form($instance){
-		if ( isset( $instance[ 'title' ] ) ) {
-			$title = $instance[ 'title' ];
-		}
-		else {
-			$title = __( 'Links', 'mn_textdomain' );
-		}
-	 
-		echo "<p>";
-		echo "<label for=\"".$this->get_field_id( 'title' )."\">".__( 'Title:' )."</label>";
-		echo "<input class=\"widefat\" id=\"".$this->get_field_id( 'title' )."\" name=\"".$this->get_field_name( 'title' )."\" type=\"text\" value=\"".esc_attr( $title )."\">";
-		echo "</p>";
-	}
-}
-?>
+/* 
+ Plugin Name: Simple Text Plugin Plugin 
+ Plugin URI: http://www.example.com/textwidget
+ Description: An example plugin to demonstrate the basics of putting together a plugin in WordPress 
+ Version: 0.1 
+ Author: Tim Smith Author 
+  */ 
+
+ __construct();
+ form();
+ update();
+ widget();
+ class TextWidget extends WP_Widget{
+ 	public function __construct() {
+ 		parent::__construct("text_widget", "Simple Text Widget",
+ 			array("description" => "A simple widget to show how WP Plugins work"));
+ 	}
+ }
+
+ add_action("widgets_init", function () { register_widget("TextWidget"); });
+
+ public function form($instance) {
+ 	$title = "";
+ 	$text = "";
+    // if instance is defined, populate the fields
+ 	if (!empty($instance)) {
+ 		$title = $instance["title"];
+ 		$text = $instance["text"];
+ 	}
+
+ 	$tableId = $this->get_field_id("title");
+ 	$tableName = $this->get_field_name("title");
+ 	echo '<label for="' . $tableId . '">Title</label><br>';
+ 	echo '<input id="' . $tableId . '" type="text" name="' .
+ 	$tableName . '" value="' . $title . '"><br>';
+
+ 	$textId = $this->get_field_id("text");
+ 	$textName = $this->get_field_name("text");
+ 	echo '<label for="' . $textId . '">Text</label><br>';
+ 	echo '<textarea id="' . $textId . '" name="' . $textName .
+ 	'">' . $text . '</textarea>';
+ }
+
+ public function update($newInstance, $oldInstance) {
+ 	$values = array();
+ 	$values["title"] = htmlentities($newInstance["title"]);
+ 	$values["text"] = htmlentities($newInstance["text"]);
+ 	return $values;
+
+ 	public function widget($args, $instance) {
+ 		$title = $instance["title"];
+ 		$text = $instance["text"];
+
+ 		echo "<h2>$title</h2>";
+ 		echo "<p>$text</p>";
+
+ 		?>
