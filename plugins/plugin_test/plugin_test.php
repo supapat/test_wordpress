@@ -1,3 +1,4 @@
+
 <?php
 /*
 Plugin Name: Test Plugin
@@ -66,6 +67,17 @@ function cf_shortcode() {
 	return ob_get_clean();
 }
 
-add_shortcode( 'sitepoint_contact_form', 'cf_shortcode' );
+add_shortcode( 'test_text', 'cf_shortcode' );
+
+function html_form_code2() {
+	echo '<button>คลิก</button>';
+	
+    
+}
+
+add_shortcode('test_Button', 'html_form_code2');
 
 ?>
+
+
+
