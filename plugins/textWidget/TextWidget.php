@@ -1,6 +1,8 @@
 <?php
 class TextWidget extends WP_Widget
 {
+    
+
     public function __construct() {
         parent::__construct("text_widget", "Simple Text Widget",
             array("description" => "A simple widget to show how WP Plugins work"));
