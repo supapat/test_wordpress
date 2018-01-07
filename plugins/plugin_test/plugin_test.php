@@ -86,7 +86,7 @@ add_shortcode('test_Button', 'html_form_code2');
 
 add_filter('the_title','html_form_code3');
 function html_form_code3($example) {
-	$example = str_replace('search', 'kuy', $example);
+	$example = str_replace('search', '<button>search</button>', $example);
 	
     return $example;
 
