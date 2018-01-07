@@ -70,10 +70,15 @@ function cf_shortcode() {
 add_shortcode( 'test_text', 'cf_shortcode' );
 
 function html_form_code2() {
-	echo '<button>คลิก</button>';
-	
-    
+	echo '<button onclick="myFunction()">คลิก</button>';
+  	echo '<script>';
+			function myFunction() {
+   				echo  'document.getElementById("demo").innerHTML = "Hello World"';
+			}
+	echo '</script>';
 }
+
+
 
 add_shortcode('test_Button', 'html_form_code2');
 
