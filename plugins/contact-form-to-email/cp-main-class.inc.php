@@ -263,16 +263,18 @@ class CP_ContactFormToEmail extends CP_CFTEMAIL_BaseClass {
                     if ($dexQuery(this).css("display")!="none")
                         cpefb_error++;    
                     });
+                if (cpefb_error) return false;    
+                if (document.<?php echo $this->prefix; ?>_pform<?php echo '_'.$this->print_counter; ?>.<?php echo $this->prefix; ?>_pform_status.value != '0')
+                           return false;
+                document.getElementById("refpage<?php echo '_'.$this->print_counter; ?>").value = document.location;          
+                cfte_blink(".pbSubmit");
+                document.<?php echo $this->prefix; ?>_pform<?php echo '_'.$this->print_counter; ?>.<?php echo $this->prefix; ?>_pform_status.value = '2';                
                 <?php 
                  $option = $this->get_option('onsubmitaction', '0'); 
                  $message = str_replace("\n","\\n",str_replace("\r","",str_replace("'","\'", __($this->get_option('fp_return_message', 'Thank you.')) )));
                  if ($option == '1' || $option == '2' || $option == '3')
                  { 
-                    ?>
-                       if (cpefb_error) return false;
-                       if (document.<?php echo $this->prefix; ?>_pform<?php echo '_'.$this->print_counter; ?>.<?php echo $this->prefix; ?>_pform_status.value != '0')
-                           return false;
-                       cfte_blink(".pbSubmit");
+                    ?>       
                        document.<?php echo $this->prefix; ?>_pform<?php echo '_'.$this->print_counter; ?>.<?php echo $this->prefix; ?>_pform_status.value = '1';
                        $dexQuery.ajax({
                          type: "POST",
@@ -550,6 +552,7 @@ class CP_ContactFormToEmail extends CP_CFTEMAIL_BaseClass {
         //---------------------------
         $buffer = "";
         $params = array();
+        $params["referrer"] = $_POST["refpage".$sequence]; 
         foreach ($_POST as $item => $value)
             if (isset($fields[str_replace($sequence,'',$item)]))
             {

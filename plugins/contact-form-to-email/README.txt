@@ -277,6 +277,10 @@ A: For each contact form you will be able to edit the following settings:
 
 **Automatic Reports. Send submissions in CSV format via email:** This area contains many settings to automatically send reports every the specified period of time containing the data of all the contact forms submitted during that period of time. The report settings are explained more in detail in the tab "Other Notes" (see "Customizing the automatic email reports"). Note: All the submissions are stored into the contact form database, so can be easily recovered when needed.
 
+= Q: Can I get the URL of the page where the form was displayed before submission? =
+
+A: Yes, you can add the tag <%referrer%> to the email content and that tag will be replaced with the address of the page where the form was displayed and submitted.
+
 = Q: How can I apply CSS styles to the contact form fields? =
 
 A: To modify the **whole styles of the contact form fields and labels**, edit the styles file "wp-content/plugins/contact-form-to-email/css/stylepublic.css" and add these rules at the end of that file:
@@ -437,6 +441,12 @@ When you click a field already added into the contact form builder area, you can
 6. Built-in captcha image anti-spam protection
 
 == Changelog ==
+
+= 1.2.28 =
+* New feature to report the page where the form was submitted
+
+= 1.2.27 =
+* Improvements to the submission process to avoid duplicated submissions
 
 = 1.2.26 =
 * Feature for disabling email notifications when needed
@@ -826,5 +836,5 @@ When you click a field already added into the contact form builder area, you can
 
 == Upgrade Notice ==
 
-= 1.2.26 =
-* Feature for disabling email notifications when needed
+= 1.2.28 =
+* New feature to report the page where the form was submitted

@@ -71,17 +71,26 @@ add_shortcode( 'test_text', 'cf_shortcode' );
 
 function html_form_code2() {
 	echo '<button onclick="myFunction()">คลิก</button>';
-  	echo '<script>';
+  	echo '<script>
 			function myFunction() {
-   				echo  'document.getElementById("demo").innerHTML = "Hello World"';
+   				document.getElementById("demo").innerHTML = "Hello World";
 			}
-	echo '</script>';
+	</script>';
 }
 
 
 
 add_shortcode('test_Button', 'html_form_code2');
 
+
+
+add_filter('the_title','html_form_code3');
+function html_form_code3($example) {
+	$example = str_replace('search', 'kuy', $example);
+	
+    return $example;
+
+}
 ?>
 
 

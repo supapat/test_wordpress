@@ -55,7 +55,7 @@ if ( 'POST' == $_SERVER['REQUEST_METHOD'] && isset( $_POST[$this->prefix.'_post_
         </tr>       
         <tr valign="top">
         <th scope="row">"From" email (for fixed "from" addresses)</th>
-        <td><input required type="email" name="fp_from_email" size="40" value="<?php echo esc_attr($this->get_option('fp_from_email', CP_CFEMAIL_DEFAULT_fp_from_email)); ?>" /></td>
+        <td><input required type="text" name="fp_from_email" size="40" value="<?php echo esc_attr($this->get_option('fp_from_email', CP_CFEMAIL_DEFAULT_fp_from_email)); ?>" /></td>
         </tr>             
         <tr valign="top">
         <th scope="row">Destination emails (comma separated)</th>
